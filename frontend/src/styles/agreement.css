@@ -1,0 +1,12 @@
+.wrapper__agreement {
+    width: 70%;
+    margin: 5vh auto 5vh auto;
+}
+
+.header__agreement {
+    font-size: 20px;
+}
+
+p {
+    text-align: justify;
+}
