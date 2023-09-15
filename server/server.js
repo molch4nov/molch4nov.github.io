@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const fs = require("fs");
 const tokenService = require('./service/token-service');
-const router = require('./router/index');
+const https = require('https');
 // Подключение к локальной базе данных SQLite
 const db = new sqlite3.Database("myapp.db");
 
@@ -29,6 +29,11 @@ app.use(cookieParser())
 app.use(cors(corsOptions))
 app.get('env')
 dotenv.config();
+
+const options = {
+    key: fs.readFileSync('../../private.key'),
+    cert: fs.readFileSync('../../certificate.crt')
+};
 
 db.serialize(() => {
     db.run(`CREATE TABLE IF NOT EXISTS users (
@@ -283,6 +288,8 @@ function generateTokenConfirmed(user) {
 }
 
 
-app.listen(8000, () => {
-    console.log("Сервер запущен на порту 8000");
-});
+// app.listen(8000, () => {
+//     console.log("Сервер запущен на порту 8000");
+// });
+
+https.createServer(options, app).listen(8000);
