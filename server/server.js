@@ -4,16 +4,13 @@ const sqlite3 = require("sqlite3").verbose();
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
-const fs = require("fs");
 const tokenService = require('./service/token-service');
-const https = require('https');
-// Подключение к локальной базе данных SQLite
+
 const db = new sqlite3.Database("myapp.db");
 
 const app = express();
 
 let cors = require ( 'cors' );
-const { isContext } = require("vm");
 let corsOptions = {
     methods: ['OPTIONS,GET,POST,PUT,DELETE'],
     credentials: true,
@@ -29,11 +26,6 @@ app.use(cookieParser())
 app.use(cors(corsOptions))
 app.get('env')
 dotenv.config();
-
-const options = {
-    key: fs.readFileSync('../../private.key'),
-    cert: fs.readFileSync('../../certificate.crt')
-};
 
 db.serialize(() => {
     db.run(`CREATE TABLE IF NOT EXISTS users (
