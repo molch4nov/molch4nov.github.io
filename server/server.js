@@ -288,8 +288,6 @@ function generateTokenConfirmed(user) {
 }
 
 
-// app.listen(8000, () => {
-//     console.log("Сервер запущен на порту 8000");
-// });
-
-https.createServer(options, app).listen(8000);
+app.listen(8000, () => {
+    console.log("Сервер запущен на порту 8000");
+});
