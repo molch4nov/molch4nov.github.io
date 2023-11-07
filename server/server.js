@@ -6,6 +6,9 @@ const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const tokenService = require('./service/token-service');
 
+const https = require('node:https');
+const fs = require('node:fs');
+
 const db = new sqlite3.Database("myapp.db");
 
 const app = express();
@@ -156,6 +159,7 @@ app.get('/api/files', async (req, res) => {
 
 })
 
+
 app.post('/api/update', (req, res) => {
     const {username, organization, phone, email, newEmail, password, newPassword} = req.body
     const token = req?.headers?.authorization.split(' ')[1]
@@ -280,6 +284,13 @@ function generateTokenConfirmed(user) {
 }
 
 
-app.listen(8000, () => {
-    console.log("Сервер запущен на порту 8000");
+
+// https
+//   .createServer(app)
+//   .listen(4000, ()=>{
+//     console.log('server is runing at port 4000')
+//   });
+
+app.listen(4000, () => {
+    console.log("Сервер запущен на порту 4000");
 });
