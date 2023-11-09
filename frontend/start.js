@@ -48,7 +48,7 @@ const changeColor = (prop) => {
     if (prop === 'Производство композитной арматуры') return 'purple'
     if (prop === 'Производство стальной арматуры') return 'snow'
     if (prop === 'Производство товарного бетона') return 'pink'
-    if (prop === 'Производства цемента') return 'gray'
+    if (prop === 'Производство цемента') return 'gray'
 }
   
   // Функция для преобразования данных
@@ -84,7 +84,7 @@ return data.map((item, index) => {
 
 
 
-  cron.schedule('0 0 * * *', () => {
+  cron.schedule('* * * * *', () => {
     axios.get(exportUrl, {responseType: 'arraybuffer'})
   .then((response) => {
     fs.writeFileSync('output.xlsx', response.data);
