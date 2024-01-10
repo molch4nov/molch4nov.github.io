@@ -74,7 +74,7 @@ const file = 'BigDataYandex.json';
 app.get('/api/download', async function(req, res) {
     try {
         let fs = require('fs');
-        let fileContent = fs.readFileSync('./BigDataYandex.json', 'utf8');
+        let fileContent = fs.readFileSync('../parsing/BigDataYandex.json', 'utf8');
         if (fileContent) {
             res.status(200).json({ fileContent });
         } else {
