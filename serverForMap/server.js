@@ -300,8 +300,8 @@ function generateTokenConfirmed(user) {
 }
 
 const options = {
-    key: fs.readFileSync('./server.key'),
-    cert: fs.readFileSync('./server.cert')
+    key: fs.readFileSync('/etc/letsencrypt/live/betindustry.ru/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/betindustry.ru/fullchain.pem')
   };
 
 const httpsServer = https.createServer(options, app);
